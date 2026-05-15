@@ -8,6 +8,20 @@
 
 class HashTable {
   std::vector<std::vector<std::pair<std::string, std::string>>> v;
+  const int base{131};
+  const int nBuckets{16};
+
+  int hash(std::string key) {
+    int k{};
+    int pow{1};
+
+    for (size_t i{}; i < key.size(); ++i) {
+      k += static_cast<int>(key[i]) * pow;
+      pow *= base;
+    }
+
+    return k % nBuckets;
+  }
 
 public:
   void set(std::string key, std::string value) {}
