@@ -8,10 +8,15 @@
 
 class HashTable {
   std::vector<std::vector<std::pair<std::string, std::string>>> v;
-  const int base{131};
   const int nBuckets{16};
 
+  // Converts a string key to a bucket index.
+  // Treats each character as a digit in base 131
+  // with the lowest power first so it's simpler,
+  // accumulates into an integer, then mods by nBuckets.
   int hash(std::string key) {
+    const int base{131};
+
     int k{};
     int pow{1};
 
