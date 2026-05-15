@@ -6,6 +6,8 @@
 #include <vector>
 #include <utility>
 
+// notes: maybe string_view fits here?
+
 class HashTable {
   std::vector<std::vector<std::pair<std::string, std::string>>> v;
   const int nBuckets{16};
