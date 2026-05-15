@@ -14,7 +14,7 @@ class HashTable {
   // Treats each character as a digit in base 131
   // with the lowest power first so it's simpler,
   // accumulates into an integer, then mods by nBuckets.
-  int hash(std::string key) {
+  int hash(const std::string& key) const {
     const int base{131};
 
     int k{};
@@ -29,9 +29,9 @@ class HashTable {
   }
 
 public:
-  void set(std::string key, std::string value) {}
-  std::optional<std::string> get(std::string key) {}
-  void deleteValue(std::string key) {}
+  void set(const std::string& key, const std::string& value) {}
+  std::optional<std::string> get(const std::string& key) const {}
+  void deleteValue(const std::string& key) {}
 };
 
 #endif  // HASHTABLE_H_
