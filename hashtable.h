@@ -11,7 +11,7 @@
 
 class HashTable {
   const size_t nBuckets{16};
-  int hash(const std::string& key) const;
+  size_t hash(const std::string& key) const;
   std::vector<std::vector<std::pair<std::string, std::string>>> v;
 public:
   HashTable() : v(nBuckets) {}

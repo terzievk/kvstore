@@ -4,7 +4,7 @@
 // Treats each character as a digit in base 131
 // with the lowest power first so it's simpler,
 // accumulates into an integer, then mods by nBuckets.
-int HashTable::hash(const std::string& key) const {
+size_t HashTable::hash(const std::string& key) const {
   const int base{131};
 
   int k{};
@@ -15,7 +15,7 @@ int HashTable::hash(const std::string& key) const {
     pow *= base;
   }
 
-  return k % static_cast<int>(nBuckets);
+  return static_cast<size_t>(k) % nBuckets;
 }
 
 // just print the hashtable
@@ -26,4 +26,31 @@ void HashTable::print() const {
       std::cout << v[i][j].first << ' ' << v[i][j].second << '\n';
     }
   }
+}
+
+
+void HashTable::set(const std::string& key, const std::string& value) {
+  size_t h{hash(key)};
+
+  for (size_t i{}; i < v[h].size(); ++i) {
+    if (v[h][i].first == key) {
+      v[h][i].second = value;
+      return;
+    }
+  }
+
+  v[h].push_back(std::make_pair(key, value));
+}
+
+
+std::optional<std::string> HashTable::get(const std::string& key) const {
+  size_t h{hash(key)};
+
+  for (size_t i{}; i < v[h].size(); ++i) {
+    if (v[h][i].first == key) {
+      return v[h][i].second;
+    }
+  }
+
+  return std::nullopt;
 }
