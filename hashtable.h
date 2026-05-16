@@ -17,7 +17,7 @@ public:
   HashTable() : v(nBuckets) {}
   void set(const std::string& key, const std::string& value);
   std::optional<std::string> get(const std::string& key) const;
-  void deleteValue(const std::string& key);
+  bool deleteValue(const std::string& key);
   void print() const;
 };
 

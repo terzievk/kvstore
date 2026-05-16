@@ -54,3 +54,21 @@ std::optional<std::string> HashTable::get(const std::string& key) const {
 
   return std::nullopt;
 }
+
+// returns true if there was an element to be deleted
+bool HashTable::deleteValue(const std::string& key) {
+  size_t h{hash(key)};
+
+  using Bucket = std::vector<std::pair<std::string, std::string>>;
+
+  for (Bucket::iterator it = v[h].begin(); it != v[h].end();) {
+    if (it->first == key) {
+      it = v[h].erase(it);
+      return true;
+    } else {
+      ++it;
+    }
+  }
+
+  return false;
+}

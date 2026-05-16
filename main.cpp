@@ -25,5 +25,7 @@ int main() {
   h.print();
   printResult(h.get("hello"));
 
+  h.deleteValue("hello");
+  h.print();
   return 0;
 }
