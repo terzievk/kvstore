@@ -15,5 +15,15 @@ int HashTable::hash(const std::string& key) const {
     pow *= base;
   }
 
-  return k % nBuckets;
+  return k % static_cast<int>(nBuckets);
+}
+
+// just print the hashtable
+void HashTable::print() const {
+  for (size_t i{}; i < v.size(); ++i) {
+    std::cout << "Bucket N:" << i << '\n';
+    for (size_t j{}; j < v[i].size(); ++j) {
+      std::cout << v[i][j].first << ' ' << v[i][j].second << '\n';
+    }
+  }
 }
