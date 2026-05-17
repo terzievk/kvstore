@@ -10,9 +10,13 @@
 // notes: maybe string_view fits here?
 
 class HashTable {
-  const size_t nBuckets{16};
+  size_t nBuckets{2};
+  size_t nElements{};
   size_t hash(const std::string& key) const;
-  std::vector<std::vector<std::pair<std::string, std::string>>> v;
+  using Bucket = std::vector<std::pair<std::string, std::string>>;
+  std::vector<Bucket> v;
+  void resize();
+
 public:
   HashTable() : v(nBuckets) {}
   void set(const std::string& key, const std::string& value);

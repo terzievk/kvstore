@@ -1,3 +1,4 @@
+#include <cassert>
 #include "hashtable.h"
 
 // Converts a string key to a bucket index.
@@ -26,6 +27,7 @@ void HashTable::print() const {
       std::cout << v[i][j].first << ' ' << v[i][j].second << '\n';
     }
   }
+  std::cout << "Number of elements: " << nElements << '\n';
 }
 
 
@@ -40,6 +42,11 @@ void HashTable::set(const std::string& key, const std::string& value) {
   }
 
   v[h].push_back(std::make_pair(key, value));
+  ++nElements;
+  // if the hashtable is 70% full resize
+  if (static_cast<double>(nElements) > static_cast<double>(nBuckets) * 0.7) {
+    resize();
+  }
 }
 
 
@@ -59,11 +66,12 @@ std::optional<std::string> HashTable::get(const std::string& key) const {
 bool HashTable::deleteValue(const std::string& key) {
   size_t h{hash(key)};
 
-  using Bucket = std::vector<std::pair<std::string, std::string>>;
-
   for (Bucket::iterator it = v[h].begin(); it != v[h].end();) {
     if (it->first == key) {
       it = v[h].erase(it);
+
+      assert(nElements > 0);
+      --nElements;
       return true;
     } else {
       ++it;
@@ -71,4 +79,20 @@ bool HashTable::deleteValue(const std::string& key) {
   }
 
   return false;
+}
+
+void HashTable::resize() {
+  nBuckets *= 2;
+  std::vector<Bucket> vNew(nBuckets);
+
+  for (size_t i{}; i < v.size(); ++i) {
+    for (size_t j{}; j < v[i].size(); ++j) {
+      std::string key{v[i][j].first};
+      std::string value{v[i][j].second};
+
+      vNew[hash(key)].push_back(std::make_pair(key, value));
+    }
+  }
+
+  v = vNew;
 }
