@@ -5,6 +5,10 @@
 // Treats each character as a digit in base 131
 // with the lowest power first so it's simpler,
 // accumulates into an integer, then mods by nBuckets.
+// Basically string hashing, where
+// hash(s) = s[0] + s[1] * p + s[2] * p^2 + ... s[n] * p^(n-1) mod m
+// where p = 131 and m = nBuckets, see:
+// https://cp-algorithms.com/string/string-hashing.html
 size_t HashTable::hash(const std::string& key) const {
   const int base{131};
 
