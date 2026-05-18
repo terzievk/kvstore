@@ -4,14 +4,14 @@ of systems programming fundamentals with an emphasis on deep understanding and
 ownership with KISS and common sense in mind.
 
 ## How to run?
-### Dependencies:
+Dependencies:
  - gcc or any other c++23 compiler
  - make
 
-### Build
-Just run make in terminal in the directory
+Build:
+Just clone and run ```make``` in terminal in the kvstore directory
 
-### Run
+Run:
 ``` ./f ```
 
 Why f?
