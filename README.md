@@ -10,11 +10,16 @@ ownership with KISS and common sense in mind.
 
 **Build:**
 
-Just clone and run ```make``` in terminal in the kvstore directory
+Just clone and run `make` in terminal in the kvstore directory
+```
+make
+```
 
 **Run:**
 
-``` ./f ```
+```
+./f
+```
 
 Why f?
 
