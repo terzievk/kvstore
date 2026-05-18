@@ -9,10 +9,13 @@ Dependencies:
  - make
 
 Build:
+
 Just clone and run ```make``` in terminal in the kvstore directory
 
 Run:
+
 ``` ./f ```
 
 Why f?
+
 Convenient to type.
