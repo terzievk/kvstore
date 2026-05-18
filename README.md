@@ -5,8 +5,8 @@ ownership with KISS and common sense in mind.
 
 ## How to run?
 **Dependencies:**
- - gcc or any other c++23 compiler
- - make
+ - `gcc` or any other c++23 compiler
+ - `make`
 
 **Build:**
 
